@@ -1,12 +1,12 @@
-import { IModalAddTodo } from "@/app/_interfaces/IModalAddTodo";
+import { IModalCreateProduct } from "@/app/_interfaces/IModalCreateProduct";
 import { FC, memo } from "react";
 
-const ModalCreateProduct: FC<IModalAddTodo> = (props) => {
+const ModalCreateProduct: FC<IModalCreateProduct> = (props) => {
   return (
     <div className="col-md-12">
       <div
         className="modal fade"
-        id="addTodoModal"
+        id="createProductModal"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -15,7 +15,7 @@ const ModalCreateProduct: FC<IModalAddTodo> = (props) => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5 me-4" id="exampleModalLabel">
-                Add Todos{" "}
+                Create Item{" "}
                 <span className="text-success">
                   {" "}
                   {props.success ? "Succeed" : ""}
@@ -24,24 +24,24 @@ const ModalCreateProduct: FC<IModalAddTodo> = (props) => {
                   {props.loading ? "Waiting" : ""}
                 </span>
               </h1>
-              {props.errors.userId && (
+              {/* {props.errors.userId && (
                 <span className="text-danger">
                   {" "}
                   {props.errors.userId.message}
                 </span>
-              )}
+              )} */}
               {props.errors.title && (
                 <span className="text-danger">
                   {" "}
                   {props.errors.title.message}
                 </span>
               )}
-              {props.errors.body && (
+              {/* {props.errors.body && (
                 <span className="text-danger">
                   {" "}
                   {props.errors.body.message}
                 </span>
-              )}
+              )} */}
               <button
                 type="button"
                 className="btn-close"
@@ -56,29 +56,14 @@ const ModalCreateProduct: FC<IModalAddTodo> = (props) => {
               >
                 <input
                   type="string"
-                  {...props.register("userId")}
-                  placeholder="User Id"
-                  defaultValue={
-                    props.success?.userId
-                      ? `User Id : ${props.success.userId}`
-                      : undefined
-                  }
-                  disabled={props.success?.userId ? true : false}
-                  className={`me-2 ${
-                    props.errors.userId ? "" : "mb-3"
-                  } border-0`}
-                />
-
-                <input
-                  type="text"
                   {...props.register("title")}
+                  placeholder="Title"
                   defaultValue={
                     props.success?.title
-                      ? `Title : ${props.success.title}`
+                      ? `User Id : ${props.success.title}`
                       : undefined
                   }
                   disabled={props.success?.title ? true : false}
-                  placeholder="Title"
                   className={`me-2 ${
                     props.errors.title ? "" : "mb-3"
                   } border-0`}
@@ -86,33 +71,63 @@ const ModalCreateProduct: FC<IModalAddTodo> = (props) => {
 
                 <input
                   type="text"
-                  {...props.register("body")}
+                  {...props.register("price")}
                   defaultValue={
-                    props.success?.body
-                      ? `Body : ${props.success.body}`
+                    props.success?.price
+                      ? `price : ${props.success.price}`
                       : undefined
                   }
-                  disabled={props.success?.body ? true : false}
-                  placeholder="Body"
+                  disabled={props.success?.price ? true : false}
+                  placeholder="price"
+                  className={`me-2 ${
+                    props.errors.price ? "" : "mb-3"
+                  } border-0`}
+                />
+
+                <input
+                  type="text"
+                  {...props.register("description")}
+                  defaultValue={
+                    props.success?.description
+                      ? `Description : ${props.success.description}`
+                      : undefined
+                  }
+                  disabled={props.success?.description ? true : false}
+                  placeholder="description"
                   className={`me-2 mb-3 border-0 ${
-                    props.errors.body ? "mt-3" : ""
+                    props.errors.description ? "mt-3" : ""
                   }`}
                 />
 
-                {props.success?.id && (
-                  <input
-                    type="text"
-                    {...props.register("id")}
-                    defaultValue={
-                      props.success?.id ? `Id : ${props.success.id}` : undefined
-                    }
-                    disabled={props.success?.id ? true : false}
-                    placeholder="Id"
-                    className={`me-2 mb-3 border-0 ${
-                      props.errors.body ? "mt-3" : ""
-                    }`}
-                  />
-                )}
+                <input
+                  type="text"
+                  {...props.register("categoryId")}
+                  defaultValue={
+                    props.success?.category
+                      ? `Category : ${props.success.category}`
+                      : undefined
+                  }
+                  disabled={props.success?.category ? true : false}
+                  placeholder="category"
+                  className={`me-2 mb-3 border-0 ${
+                    props.errors.categoryId ? "mt-3" : ""
+                  }`}
+                />
+
+                <input
+                  type="text"
+                  {...props.register("images")}
+                  defaultValue={
+                    props.success?.images
+                      ? `images : ${props.success.images}`
+                      : undefined
+                  }
+                  disabled={props.success?.images ? true : false}
+                  placeholder="images"
+                  className={`me-2 mb-3 border-0 ${
+                    props.errors.images ? "mt-3" : ""
+                  }`}
+                />
 
                 <div className="modal-footer">
                   <button
@@ -127,13 +142,7 @@ const ModalCreateProduct: FC<IModalAddTodo> = (props) => {
                     type="submit"
                     className="btn btn-primary"
                     value={"Save"}
-                    disabled={
-                      props.watch().title &&
-                      props.watch().body &&
-                      props.watch().userId
-                        ? false
-                        : true
-                    }
+                    disabled={props.watch().title ? false : true}
                   />
                 </div>
               </form>

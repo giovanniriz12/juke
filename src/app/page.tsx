@@ -78,30 +78,21 @@ export default function Home() {
     }
   };
 
-  const createProduct = () => {
-    dispatch(postProducts())
-      .unwrap()
-      .then((res) => {
-        console.log("res", res);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
 
-  const onSubmit = (data: IPostTodos) => {
+  const onSubmit = (data: ICreateProduct) => {
     setLoading(true);
-    dispatch(postTodos(data))
-      .unwrap()
-      .then((res) => {
-        setLoading(false);
-        setSuccess(res.data);
-      })
-      .catch((error) => {});
+    // dispatch(postProducts())
+    //   .unwrap()
+    //   .then((res) => {
+    //     console.log("res", res);
+    //   })
+    //   .catch((error) => {
+    //     console.log("error", error);
+    //   });
     reset();
   };
 
-  const onError = (errors: FieldErrors<IPostTodos>) => {
+  const onError = (errors: FieldErrors<ICreateProduct>) => {
     console.log("Form Errors", errors);
   };
 
@@ -129,7 +120,7 @@ export default function Home() {
             type="button"
             className="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#addTodoModal"
+            data-bs-target="#createProductModal"
           >
             Add Products
           </button>
